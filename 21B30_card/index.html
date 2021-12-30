@@ -1,0 +1,82 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@next"></script>
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-plus"></script>
+  <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./main.css">
+  <title>Element Plus demo</title>
+</head>
+
+<body>
+  <div id="app">
+    <el-container v-if="show==1" class="animated fadeInLeft">
+      <el-header class="welcome">
+        <el-image src='./img/19.jpg' fit="cover"/>
+      </el-header>
+      <el-main>
+        <h3>欢迎使用</h3>
+        <div>见信如无，巴拉巴拉</div>
+        <div>快来写信吧，快来吧</div>
+      </el-main>
+      <el-footer class="footer">
+        <el-button @click="add" type="success">开始写信</el-button>
+      </el-footer>
+    </el-container>
+    <el-container v-show="show==2" class="animated fadeIn">
+      <el-header>
+
+      </el-header>
+      <el-form :model="form" label-width="50px">
+        <el-form-item label="To">
+          <el-input v-model="form.to" maxlength="10" show-word-limit></el-input>
+        </el-form-item>
+        <el-form-item label="From">
+          <el-input v-model="form.from" maxlength="10" show-word-limit></el-input>
+        </el-form-item>
+        <el-form-item label="正文">
+          <el-input v-model="form.content" type="textarea" rows="10" resize="none" maxlength="120" show-word-limit>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="时间">
+          <el-select placeholder="是否显示时间" v-model="form.isShowTime">
+            <el-option :key="true" label="显示" :value="true">显示</el-option>
+            <el-option :key="false" label="不显示" :value="false">不显示</el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-footer style="text-align: center;">
+          <el-button @click="render">生成信件</el-button>
+        </el-footer>
+      </el-form>
+    </el-container>
+
+    <el-container v-show="show==3" class="animated fadeIn">
+
+      <div class="card" id="capture">
+        <el-image src="./img/card1.jpg" fit="cover"></el-image>
+        <div class="content">
+          <div>张三：</div>
+          <div>知道我是谁吗，所以不能这样，你好啊</div>
+          <div>——李四</div>
+        </div>
+      </div>
+      <!-- <canvas id="mycanvas" width="300" height="420">
+        你的浏览器不支持 canvas，请升级你的浏览器。
+      </canvas> -->
+      <el-footer style="text-align: center;margin-top: 30px;">
+        <el-button type="success" @click="dele">更换模板</el-button>
+        <el-button type="success" @click="capture">修改文字</el-button>
+      </el-footer>
+    </el-container>
+  </div>
+  <script src="./main.js"></script>
+</body>
+
+</html>
